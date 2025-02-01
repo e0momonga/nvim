@@ -69,12 +69,12 @@ return {
     dependencies = { "kevinhwang91/promise-async" },
     lazy = false,
     config = function()
-      require('ufo').setup({
+      require("ufo").setup {
         provider_selector = function()
-          return { 'treesitter', 'indent' }
-        end
-      })
-    end
+          return { "treesitter", "indent" }
+        end,
+      }
+    end,
   },
   { "sindrets/diffview.nvim", lazy = false },
   {
@@ -85,26 +85,17 @@ return {
         -- Whether or not to open the quickfix window when the spec fails.
         open_quickfix_when_spec_failed = true,
       }
-    end
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {
-      defaults = {
-        file_ignore_patterns = { "node_modules/", "vendor/" },
-      }
-    }
+    end,
   },
   {
     "monaqa/dial.nvim",
   },
   {
-    'Wansmer/treesj',
-    keys = { '<space>m', '<space>j', '<space>s' },
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    "Wansmer/treesj",
+    keys = { "<space>m", "<space>j", "<space>s" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require('treesj').setup()
+      require("treesj").setup()
     end,
   },
   {
@@ -120,15 +111,17 @@ return {
   {
     "mgierada/lazydocker.nvim",
     dependencies = { "akinsho/toggleterm.nvim" },
-    config = function() require("lazydocker").setup {} end,
+    config = function()
+      require("lazydocker").setup {}
+    end,
     lazy = false,
     event = "BufRead", -- or any other event you might want to use.
   },
   {
-    'numToStr/Comment.nvim',
+    "numToStr/Comment.nvim",
     lazy = false,
     config = function()
-      require('Comment').setup()
+      require("Comment").setup()
     end,
   },
   {
@@ -138,5 +131,5 @@ return {
   {
     "qnighy/lalrpop.vim",
     lazy = false,
-  }
+  },
 }
