@@ -26,6 +26,7 @@ require("lazy").setup({
   },
 
   { import = "plugins" },
+  { import = "plugins.ui" },
 }, lazy_config)
 
 -- load theme
