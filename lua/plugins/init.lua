@@ -55,15 +55,6 @@ return {
       }
     end,
   },
-  -- NOTE: auto-settionが原因でsytaxが効かなくなるのでコメントアウト
-  -- 解決するまでautosessionは使わない
-  -- {
-  --   "rmagatti/auto-session",
-  --   lazy = false,
-  --   config = function()
-  --     require "configs.auto-session"
-  --   end,
-  -- },
   {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },

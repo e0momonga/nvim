@@ -26,6 +26,7 @@ require("lazy").setup({
   },
 
   { import = "plugins" },
+  { import = "plugins.session" },
   { import = "plugins.ui" },
   { import = "plugins.finder" },
 }, lazy_config)
