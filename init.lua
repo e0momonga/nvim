@@ -31,6 +31,14 @@ require("lazy").setup({
   { import = "plugins.finder" },
 }, lazy_config)
 
+-- comment
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.formatoptions = vim.opt_local.formatoptions - { "c", "r", "o" }
+  end,
+})
+
 -- load theme
 dofile(vim.g.base46_cache .. "defaults")
 dofile(vim.g.base46_cache .. "statusline")
