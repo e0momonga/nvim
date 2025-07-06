@@ -12,6 +12,7 @@ return {
       "scss",
       "ruby",
       "go",
+      "python",
       "terraform",
       "c",
       "dart",
