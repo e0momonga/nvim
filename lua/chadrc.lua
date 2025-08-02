@@ -8,13 +8,14 @@ local highlights = require "highlights"
 
 M.base46 = {
   -- theme = "poimandres",
-  theme = "monekai",
+  theme = "ayu_dark",
   hl_override = highlights.hl_override,
 
   -- hl_override = {
   -- 	Comment = { italic = true },
   -- 	["@comment"] = { italic = true },
   -- },
+  transparency = true, -- enable transparency
 }
 
 M.ui = {
