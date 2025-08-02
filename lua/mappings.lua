@@ -136,3 +136,6 @@ map("n", "<leader>zz", ":ZenMode<CR>", { desc = "ZenMode" })
 -- Paste without yanking in visual mode
 map("x", "p", '"_dP', { desc = "Paste without yanking", silent = true })
 
+-- copy-file-path.nvim
+map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = true })
+
