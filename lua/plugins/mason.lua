@@ -11,7 +11,8 @@ return {
           "typescript-language-server",
           "gopls",
           "terraform-ls",
-          "rust-analyzer"
+          "rust-analyzer",
+          "ruby_lsp",
         }
       }
     }
