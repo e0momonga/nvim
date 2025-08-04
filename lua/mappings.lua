@@ -8,23 +8,13 @@ map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
 map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvchad" })
 map("n", "|", "<Cmd>vsplit<CR>", { desc = "Vertical Split" })
 map("n", "\\", "<Cmd>split<CR>", { desc = "Horizontal Split" })
--- Original tab switching (commented out)
--- map("n", "]b", function()
---   require("nvchad.tabufline").next()
--- end, { desc = "Buffer Goto next" })
-
--- map("n", "[b", function()
---   require("nvchad.tabufline").prev()
--- end, { desc = "Buffer Goto prev" })
-
--- Simple tab switching
-map("n", "]", function()
+map("n", "]b", function()
   require("nvchad.tabufline").next()
-end, { desc = "Next tab" })
+end, { desc = "Buffer Goto next" })
 
-map("n", "[", function()
+map("n", "[b", function()
   require("nvchad.tabufline").prev()
-end, { desc = "Previous tab" })
+end, { desc = "Buffer Goto prev" })
 
 map("n", "<leader>bx", function()
   require("nvchad.tabufline").closeAllBufs()
