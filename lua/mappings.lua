@@ -16,6 +16,15 @@ map("n", "[b", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer Goto prev" })
 
+-- Simple tab switching
+map("n", "]", function()
+  require("nvchad.tabufline").next()
+end, { desc = "Next tab" })
+
+map("n", "[", function()
+  require("nvchad.tabufline").prev()
+end, { desc = "Previous tab" })
+
 map("n", "<leader>bx", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "Close all buffers except current one" })
@@ -138,4 +147,10 @@ map("x", "p", '"_dP', { desc = "Paste without yanking", silent = true })
 
 -- copy-file-path.nvim
 map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = true })
+
+-- Disable default leader+n mapping and add custom line number toggle
+vim.keymap.del("n", "<leader>n", { silent = true })
+map("n", "<leader>NN", function()
+  vim.wo.number = not vim.wo.number
+end, { desc = "Toggle line numbers" })
 
