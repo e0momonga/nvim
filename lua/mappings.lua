@@ -128,7 +128,7 @@ map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true, desc 
 -- Copilot
 map("n", "<leader>cd", ":Copilot disable<CR>", { desc = "Disable Copilot" })
 map("n", "<leader>ce", ":Copilot enable<CR>", { desc = "Enable Copilot" })
-map("i", "<C-l>", 'copilot#Accept("<CR>")', { silent = true, expr = true, script = true, replace_keycodes = false })
+map("i", "<C-k>", 'copilot#Accept("<CR>")', { silent = true, expr = true, script = true, replace_keycodes = false })
 
 -- ZenMode
 map("n", "<leader>zz", ":ZenMode<CR>", { desc = "ZenMode" })
