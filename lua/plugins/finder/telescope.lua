@@ -23,11 +23,16 @@ local function setup()
         "--smart-case",
         "-uu",
       },
-      -- layout confing
-      layout_strategy = "horizontal", -- または "vertical" も可
+      -- layout config
+      layout_strategy = "vertical", -- vertical layout for bottom preview
       layout_config = {
-        prompt_position = "top", -- 検索窓を上部に配置
-        anchor = "N", -- "N" は North (上)
+        vertical = {
+          prompt_position = "top", -- 検索窓を上部に配置
+          mirror = true, -- プレビューを下側に配置
+          width = { padding = 0 },
+          height = { padding = 0 },
+          preview_height = 0.4, -- 下側40%をプレビューに
+        },
       },
       sorting_strategy = "ascending", -- 結果の並び順を上からにする
     },
