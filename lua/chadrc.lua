@@ -8,7 +8,7 @@ local highlights = require "highlights"
 
 M.base46 = {
   -- theme = "poimandres",
-  theme = "ayu_dark",
+  theme = "tokyonight",
   hl_override = highlights.hl_override,
 
   -- hl_override = {
