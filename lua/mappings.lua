@@ -22,6 +22,15 @@ end, { desc = "Close all buffers except current one" })
 
 map("n", "<leader>rh", function() require("highlights").setup() end, { desc = "Reload Highlights" })
 
+-- 黒穴レジスタで通常モードの削除（ヤンクせずに削除）
+vim.keymap.set('n', '<leader>d', '"_d', { noremap = true, desc = "Delete without yanking" })
+
+-- ビジュアルモードでも同様に削除
+vim.keymap.set('v', '<leader>d', '"_d', { noremap = true, desc = "Visual delete without yanking" })
+
+-- 行全体を黒穴レジスタで削除
+vim.keymap.set('n', '<leader>dd', '"_dd', { noremap = true, desc = "Line delete without yanking" })
+
 
 -- Movement enhancements
 map("n", "<S-l>", "$")
