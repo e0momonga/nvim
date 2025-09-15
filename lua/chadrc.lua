@@ -43,4 +43,8 @@ M.nvdash = {
   },
 }
 
+-- M.lsp = {
+--   signature = false
+-- }
+
 return M

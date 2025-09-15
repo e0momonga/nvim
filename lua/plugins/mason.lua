@@ -7,7 +7,6 @@ return {
       opts = {
         ensure_installed = {
           "lua_ls",
-          "solargraph",
           "typescript-language-server",
           "gopls",
           "terraform-ls",
