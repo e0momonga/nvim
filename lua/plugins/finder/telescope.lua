@@ -35,6 +35,11 @@ local function setup()
         },
       },
       sorting_strategy = "ascending", -- 結果の並び順を上からにする
+      -- Enable picker caching for resume functionality
+      cache_picker = {
+        num_pickers = 10, -- キャッシュするpicker数
+        limit_entries = 1000, -- エントリ数制限
+      },
     },
     extensions = {
       fzf = {
@@ -48,12 +53,28 @@ local function setup()
 
   -- fzf拡張をロード
   require("telescope").load_extension "fzf"
-
-  -- local builtin = require('telescope.builtin')
-  -- vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-  -- vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-  -- vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
 end
+
+-- Telescope utility functions
+local M = {}
+
+local telescope_used = {}
+
+M.smart_resume = function(picker_name, builtin_func)
+  return function()
+    if telescope_used[picker_name] then
+      -- 2回目以降はresume
+      require("telescope.builtin").resume()
+    else
+      -- 初回は通常検索
+      telescope_used[picker_name] = true
+      builtin_func()
+    end
+  end
+end
+
+-- Export utilities for use in mappings
+_G.telescope_utils = M
 
 return {
   "nvim-telescope/telescope.nvim",

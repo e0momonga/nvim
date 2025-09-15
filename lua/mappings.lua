@@ -148,10 +148,14 @@ map("x", "p", '"_dP', { desc = "Paste without yanking", silent = true })
 -- copy-file-path.nvim
 map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = true })
 
--- Telescope shortcuts (quick access)
-map("n", "fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "ff", ":Telescope find_files<CR>", { desc = "Find files" })
-map("n", "fw", ":Telescope live_grep<CR>", { desc = "Find words" })
+-- Telescope shortcuts (quick access) with resume support
+local builtin = require("telescope.builtin")
+map("n", "fb", telescope_utils.smart_resume("buffers", builtin.buffers), { desc = "Find buffers" })
+map("n", "ff", telescope_utils.smart_resume("find_files", builtin.find_files), { desc = "Find files" })
+map("n", "fw", telescope_utils.smart_resume("live_grep", builtin.live_grep), { desc = "Find words" })
+map("n", "<leader>fb", telescope_utils.smart_resume("buffers", builtin.buffers), { desc = "Find buffers" })
+map("n", "<leader>ff", telescope_utils.smart_resume("find_files", builtin.find_files), { desc = "Find files" })
+map("n", "<leader>fw", telescope_utils.smart_resume("live_grep", builtin.live_grep), { desc = "Find words" })
 
 -- Disable default leader+n mapping and add custom line number toggle
 vim.keymap.del("n", "<leader>n", { silent = true })
