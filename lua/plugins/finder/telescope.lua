@@ -40,6 +40,18 @@ local function setup()
         num_pickers = 10, -- キャッシュするpicker数
         limit_entries = 1000, -- エントリ数制限
       },
+      -- Smart history configuration
+      history = {
+        path = vim.fn.stdpath("data") .. "/telescope_history.sqlite3",
+        limit = 100,
+      },
+      -- History navigation mappings
+      mappings = {
+        i = {
+          ["<M-k>"] = require("telescope.actions").cycle_history_prev,
+          ["<M-j>"] = require("telescope.actions").cycle_history_next,
+        },
+      },
     },
     extensions = {
       fzf = {
