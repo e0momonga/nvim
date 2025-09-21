@@ -11,7 +11,12 @@ local custom_mapping = {
   
   ["<Tab>"] = cmp.mapping(function(fallback)
     if cmp.visible() then
-      cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true })
+      -- 手動で選択された項目のみ確定、自動選択は無効
+      if cmp.get_active_entry() then
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+      else
+        fallback()
+      end
     elseif require("luasnip").expand_or_jumpable() then
       require("luasnip").expand_or_jump()
     else
