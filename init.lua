@@ -13,8 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 local lazy_config = require "configs.lazy"
 
--- load plugins
-require("lazy").setup({
+-- Build plugin list
+local lazy_plugins = {
   {
     "NvChad/NvChad",
     lazy = false,
@@ -29,7 +29,16 @@ require("lazy").setup({
   { import = "plugins.session" },
   { import = "plugins.ui" },
   { import = "plugins.finder" },
-}, lazy_config)
+}
+
+-- Load custom plugins from custom.chadrc
+-- Custom colorscheme plugins are auto-generated in lua/custom/chadrc.lua
+local custom_chadrc = require "custom.chadrc"
+for _, plugin in ipairs(custom_chadrc.plugins or {}) do
+  table.insert(lazy_plugins, plugin)
+end
+
+require("lazy").setup(lazy_plugins, lazy_config)
 
 -- comment
 vim.api.nvim_create_autocmd("FileType", {
@@ -48,3 +57,10 @@ require "nvchad.autocmds"
 vim.schedule(function()
   require "mappings"
 end)
+
+-- Apply custom colorscheme (overrides base46)
+local custom_chadrc = require "custom.chadrc"
+local active_scheme = custom_chadrc.schemes[custom_chadrc.colorscheme]
+if active_scheme and active_scheme.setup then
+  active_scheme.setup()
+end
