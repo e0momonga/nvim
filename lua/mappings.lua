@@ -150,11 +150,13 @@ map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = 
 
 -- Telescope shortcuts (quick access)
 map("n", "fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "ff", ":Telescope find_files<CR>", { desc = "Find files" })
-map("n", "fw", ":Telescope live_grep<CR>", { desc = "Find words" })
+map("n", "ff", ":Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
+map("n", "FF", ":lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
+map("n", "fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
 map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files" })
-map("n", "<leader>fw", ":Telescope live_grep<CR>", { desc = "Find words" })
+map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
+map("n", "<leader>FF", ":lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
+map("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
 
 -- Disable default leader+n mapping and add custom line number toggle
 vim.keymap.del("n", "<leader>n", { silent = true })

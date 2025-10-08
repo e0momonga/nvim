@@ -50,6 +50,12 @@ local function setup()
         i = {
           ["<M-k>"] = require("telescope.actions").cycle_history_prev,
           ["<M-j>"] = require("telescope.actions").cycle_history_next,
+          -- 検索結果をquickfixリストに送信（n/Nでファイル間移動可能）
+          ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+        },
+        n = {
+          -- 検索結果をquickfixリストに送信（n/Nでファイル間移動可能）
+          ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
         },
       },
     },
@@ -65,6 +71,8 @@ local function setup()
 
   -- fzf拡張をロード
   require("telescope").load_extension "fzf"
+  -- live_grep_args拡張をロード
+  require("telescope").load_extension "live_grep_args"
 end
 
 -- Telescope utility functions
@@ -85,11 +93,23 @@ M.smart_resume = function(picker_name, builtin_func)
   end
 end
 
+-- fzfを使わない正確なファイル検索
+-- fuzzy matchではなくsubstring matchで厳密にマッチング
+M.find_files_exact = function()
+  require("telescope.builtin").find_files {
+    file_sorter = require("telescope.sorters").get_substr_matcher(),
+  }
+end
+
 -- Export utilities for use in mappings
 _G.telescope_utils = M
 
 return {
   "nvim-telescope/telescope.nvim",
-  dependencies = { "nvim-lua/plenary.nvim", "nvim-treesitter/nvim-treesitter" },
+  dependencies = {
+    "nvim-lua/plenary.nvim",
+    "nvim-treesitter/nvim-treesitter",
+    "nvim-telescope/telescope-live-grep-args.nvim",
+  },
   config = setup,
 }
