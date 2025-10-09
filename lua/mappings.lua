@@ -148,6 +148,10 @@ map("x", "p", '"_dP', { desc = "Paste without yanking", silent = true })
 -- copy-file-path.nvim
 map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = true })
 
+-- Markdown
+map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Toggle markdown preview", silent = true })
+map("n", "<leader>mr", ":RenderMarkdown toggle<CR>", { desc = "Toggle markdown render", silent = true })
+
 -- Telescope shortcuts (quick access)
 map("n", "fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
 map("n", "ff", ":Telescope find_files<CR>", { desc = "Find files (fuzzy)" })

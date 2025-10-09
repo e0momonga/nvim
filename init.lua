@@ -30,6 +30,7 @@ local lazy_plugins = {
   { import = "plugins.ui" },
   { import = "plugins.finder" },
   { import = "plugins.git" },
+  { import = "plugins.markdown" },
 }
 
 -- Load custom plugins from custom.chadrc

@@ -16,7 +16,9 @@ return {
       "terraform",
       "c",
       "dart",
-      "graphql"
+      "graphql",
+      "markdown",
+      "markdown_inline"
     },
     indent = {
       enable = true,
