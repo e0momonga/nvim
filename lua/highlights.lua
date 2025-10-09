@@ -58,6 +58,32 @@ M.override = {
     fg = colors.red,
     bg = colors.background,
   },
+
+  -- GitSigns
+  GitSignsAdd = {
+    fg = colors.green,
+    bg = colors.background,
+  },
+
+  GitSignsChange = {
+    fg = colors.blue,
+    bg = colors.background,
+  },
+
+  GitSignsDelete = {
+    fg = colors.red,
+    bg = colors.background,
+  },
+
+  GitSignsChangedelete = {
+    fg = colors.orange,
+    bg = colors.background,
+  },
+
+  GitSignsUntracked = {
+    fg = colors.grey,
+    bg = colors.background,
+  },
 }
 
 function M.setup()

@@ -47,15 +47,6 @@ return {
     opts = {},
   },
   {
-    "lewis6991/gitsigns.nvim",
-    lazy = false,
-    config = function()
-      require("gitsigns").setup {
-        current_line_blame = true,
-      }
-    end,
-  },
-  {
     "kevinhwang91/nvim-ufo",
     dependencies = { "kevinhwang91/promise-async" },
     lazy = false,
