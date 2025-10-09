@@ -1,7 +1,7 @@
 local M = {}
 
 -- Colorscheme selection
-M.colorscheme = "monokai-pro"
+M.colorscheme = "onedark" -- Change this to switch colorschemes
 
 -- Colorscheme definitions
 -- To add a new colorscheme, just add an entry here
