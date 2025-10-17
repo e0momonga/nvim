@@ -28,9 +28,15 @@ M.schemes = {
 
 -- Auto-generate plugins list from schemes
 -- This avoids duplicating plugin names in multiple files
+-- Only load the active colorscheme, others are lazy loaded
 M.plugins = {}
-for _, scheme in pairs(M.schemes) do
-  table.insert(M.plugins, { scheme.plugin, lazy = false })
+for name, scheme in pairs(M.schemes) do
+  local is_active = (name == M.colorscheme)
+  table.insert(M.plugins, {
+    scheme.plugin,
+    lazy = not is_active,
+    priority = is_active and 1000 or nil
+  })
 end
 
 return M
