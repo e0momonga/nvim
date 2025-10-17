@@ -8,6 +8,7 @@ return {
         ensure_installed = {
           "lua_ls",
           "typescript-language-server",
+          "biome",
           "gopls",
           "terraform-ls",
           "rust-analyzer",
