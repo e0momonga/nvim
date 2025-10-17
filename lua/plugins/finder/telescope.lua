@@ -52,10 +52,15 @@ local function setup()
           ["<M-j>"] = require("telescope.actions").cycle_history_next,
           -- 検索結果をquickfixリストに送信（n/Nでファイル間移動可能）
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+          -- バッファ削除
+          ["<C-d>"] = require("telescope.actions").delete_buffer,
         },
         n = {
           -- 検索結果をquickfixリストに送信（n/Nでファイル間移動可能）
           ["<C-q>"] = require("telescope.actions").send_to_qflist + require("telescope.actions").open_qflist,
+          -- バッファ削除
+          ["<C-d>"] = require("telescope.actions").delete_buffer,
+          ["dd"] = require("telescope.actions").delete_buffer,
         },
       },
     },
@@ -95,9 +100,13 @@ end
 
 -- fzfを使わない正確なファイル検索
 -- fuzzy matchではなくsubstring matchで厳密にマッチング
+-- 隠しファイルや.gitignore対象のファイルも検索対象に含む
 M.find_files_exact = function()
   require("telescope.builtin").find_files {
     file_sorter = require("telescope.sorters").get_substr_matcher(),
+    hidden = true, -- 隠しファイル（.で始まるファイル）も表示
+    no_ignore = true, -- .gitignoreで無視されるファイルも表示
+    no_ignore_parent = true, -- 親ディレクトリの.gitignoreも無視
   }
 end
 
