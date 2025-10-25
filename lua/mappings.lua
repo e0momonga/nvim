@@ -1,10 +1,6 @@
 require "nvchad.mappings"
 local map = vim.keymap.set
 
-
--- general
-map("i", "jj", "<ESC>")
-
 -- Quit commands
 map("n", "<leader>q", "<Cmd>q<CR>", { desc = "Quit" })
 map("n", "<leader>Q", "<Cmd>qa<CR>", { desc = "Quit Nvchad" })
