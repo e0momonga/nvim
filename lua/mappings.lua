@@ -4,10 +4,19 @@ local map = vim.keymap.set
 
 -- general
 map("i", "jj", "<ESC>")
-map("n", "<leader>q", ":q<CR>", { desc = "Quit" })
-map("n", "<leader>Q", ":qa<CR>", { desc = "Quit Nvchad" })
+
+-- Quit commands
+map("n", "<leader>q", "<Cmd>q<CR>", { desc = "Quit" })
+map("n", "<leader>Q", "<Cmd>qa<CR>", { desc = "Quit Nvchad" })
+
+-- Save commands
+map("n", "<leader>ww", "<Cmd>w<CR>", { desc = "Save file" })
+
+-- Window splits
 map("n", "|", "<Cmd>vsplit<CR>", { desc = "Vertical Split" })
 map("n", "\\", "<Cmd>split<CR>", { desc = "Horizontal Split" })
+
+-- Buffer navigation
 map("n", "]b", function()
   require("nvchad.tabufline").next()
 end, { desc = "Buffer Goto next" })
@@ -16,10 +25,12 @@ map("n", "[b", function()
   require("nvchad.tabufline").prev()
 end, { desc = "Buffer Goto prev" })
 
+-- Close all buffers except current one
 map("n", "<leader>bx", function()
   require("nvchad.tabufline").closeAllBufs()
 end, { desc = "Close all buffers except current one" })
 
+-- Reload highlights
 map("n", "<leader>rh", function() require("highlights").setup() end, { desc = "Reload Highlights" })
 
 -- 黒穴レジスタで通常モードの削除（ヤンクせずに削除）
@@ -87,14 +98,14 @@ map("n", "<leader>ns", "<Cmd>lua require('neotest').summary.toggle()<CR>", { des
 
 
 -- RSpec commands
-map("n", "<leader>rn", ":RSpecNearest<CR>", { desc = "Run nearest spec", silent = true })
-map("n", "<leader>rf", ":RSpecCurrentFile<CR>", { desc = "Run current file spec", silent = true })
-map("n", "<leader>rr", ":RSpecRerun<CR>", { desc = "Rerun spec", silent = true })
-map("n", "<leader>rF", ":RSpecOnlyFailures<CR>", { desc = "Run only failed spec", silent = true })
-map("n", "<leader>rs", ":RSpecShowLastResult<CR>", { desc = "Show spec results", silent = true })
+map("n", "<leader>rn", "<Cmd>RSpecNearest<CR>", { desc = "Run nearest spec", silent = true })
+map("n", "<leader>rf", "<Cmd>RSpecCurrentFile<CR>", { desc = "Run current file spec", silent = true })
+map("n", "<leader>rr", "<Cmd>RSpecRerun<CR>", { desc = "Rerun spec", silent = true })
+map("n", "<leader>rF", "<Cmd>RSpecOnlyFailures<CR>", { desc = "Run only failed spec", silent = true })
+map("n", "<leader>rs", "<Cmd>RSpecShowLastResult<CR>", { desc = "Show spec results", silent = true })
 
 -- Flutter
-map("n", "<leader>rl", ":FlutterLspRestart<CR>", { desc = "Restart Flutter LSP" })
+map("n", "<leader>rl", "<Cmd>FlutterLspRestart<CR>", { desc = "Restart Flutter LSP" })
 
 -- dial.nvim
 map("n", "<C-a>", function()
@@ -117,50 +128,50 @@ end, { desc = "Decrement number under visual" })
 map("n", "<leader>mt", "<cmd>lua require('treesj').toggle()<CR>", { desc = "Toggle Treesj" })
 
 -- dap key maps
-map("n", "<F5>", ":lua require'dap'.continue()<CR>",
+map("n", "<F5>", "<Cmd>lua require'dap'.continue()<CR>",
   { silent = true, desc = "Continue debugging or start if not started" })
-map("n", "<F9>", ":lua require'dap'.step_into()<CR>", { silent = true, desc = "Step into the function call" })
-map("n", "<F10>", ":lua require'dap'.step_over()<CR>", { silent = true, desc = "Step over the current line of code" })
-map("n", "<F12>", ":lua require'dap'.step_out()<CR>", { silent = true, desc = "Step out of the current function" })
+map("n", "<F9>", "<Cmd>lua require'dap'.step_into()<CR>", { silent = true, desc = "Step into the function call" })
+map("n", "<F10>", "<Cmd>lua require'dap'.step_over()<CR>", { silent = true, desc = "Step over the current line of code" })
+map("n", "<F12>", "<Cmd>lua require'dap'.step_out()<CR>", { silent = true, desc = "Step out of the current function" })
 
-map("n", "<leader>b", ":lua require'dap'.toggle_breakpoint()<CR>",
+map("n", "<leader>b", "<Cmd>lua require'dap'.toggle_breakpoint()<CR>",
   { silent = true, desc = "Toggle breakpoint at the current line" })
-map("n", "<leader>bu", ":lua require'dap'.clear_breakpoints()<CR>", { silent = true, desc = "Clear all breakpoints" })
-map("n", "<leader>bc", ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
+map("n", "<leader>bu", "<Cmd>lua require'dap'.clear_breakpoints()<CR>", { silent = true, desc = "Clear all breakpoints" })
+map("n", "<leader>bc", "<Cmd>lua require'dap'.set_breakpoint(vim.fn.input('Breakpoint condition: '))<CR>",
   { silent = true, desc = "Set a breakpoint with a condition" })
-map("n", "<leader>l", ":lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
+map("n", "<leader>l", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))<CR>",
   { silent = true, desc = "Set a log point" })
 
 -- dap-ui key maps
-map("n", "<leader>d", ":lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle dap-ui" })
+map("n", "<leader>d", "<Cmd>lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle dap-ui" })
 
 -- Copilot
-map("n", "<leader>cd", ":Copilot disable<CR>", { desc = "Disable Copilot" })
-map("n", "<leader>ce", ":Copilot enable<CR>", { desc = "Enable Copilot" })
+map("n", "<leader>cd", "<Cmd>Copilot disable<CR>", { desc = "Disable Copilot" })
+map("n", "<leader>ce", "<Cmd>Copilot enable<CR>", { desc = "Enable Copilot" })
 map("i", "<C-k>", 'copilot#Accept("<CR>")', { silent = true, expr = true, script = true, replace_keycodes = false })
 
 -- ZenMode
-map("n", "<leader>zz", ":ZenMode<CR>", { desc = "ZenMode" })
+map("n", "<leader>zz", "<Cmd>ZenMode<CR>", { desc = "ZenMode" })
 
 -- Paste without yanking in visual mode
 map("x", "p", '"_dP', { desc = "Paste without yanking", silent = true })
 
 -- copy-file-path.nvim
-map("n", "<leader>cp", ":CopyFilePath<CR>", { desc = "Copy file path", silent = true })
+map("n", "<leader>cp", "<Cmd>CopyFilePath<CR>", { desc = "Copy file path", silent = true })
 
 -- Markdown
-map("n", "<leader>mp", ":MarkdownPreviewToggle<CR>", { desc = "Toggle markdown preview", silent = true })
-map("n", "<leader>mr", ":RenderMarkdown toggle<CR>", { desc = "Toggle markdown render", silent = true })
+map("n", "<leader>mp", "<Cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle markdown preview", silent = true })
+map("n", "<leader>mr", "<Cmd>RenderMarkdown toggle<CR>", { desc = "Toggle markdown render", silent = true })
 
 -- Telescope shortcuts (quick access)
-map("n", "fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "ff", ":Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
-map("n", "FF", ":lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
-map("n", "fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
-map("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
-map("n", "<leader>FF", ":lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
-map("n", "<leader>fw", ":lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
+map("n", "fb", "<Cmd>Telescope buffers<CR>", { desc = "Find buffers" })
+map("n", "ff", "<Cmd>Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
+map("n", "FF", "<Cmd>lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
+map("n", "fw", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
+map("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "Find buffers" })
+map("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
+map("n", "<leader>FF", "<Cmd>lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
+map("n", "<leader>fw", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
 
 -- Disable default leader+n mapping and add custom line number toggle
 vim.keymap.del("n", "<leader>n", { silent = true })
