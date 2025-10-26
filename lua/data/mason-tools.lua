@@ -10,7 +10,7 @@ return {
 
   -- TypeScript/JavaScript
   typescript = {
-    lsp = { "typescript-language-server", "biome" },
+    lsp = { "ts_ls", "biome" },
     formatters = { "biome" },
     linters = { "biome" },
   },
@@ -31,7 +31,7 @@ return {
 
   -- Rust
   rust = {
-    lsp = { "rust-analyzer" },
+    lsp = { "rust_analyzer" },
     formatters = { "rustfmt" },
   },
 
@@ -42,7 +42,7 @@ return {
 
   -- Terraform/IaC
   terraform = {
-    lsp = { "terraform-ls" },
+    lsp = { "terraformls" },
     linters = { "tflint" },
   },
 
@@ -70,10 +70,10 @@ return {
   -- 共通ツール（言語非依存）
   common = {
     lsp = {
-      "marksman",              -- Markdown
-      "taplo",                 -- TOML
-      "jsonls",                -- JSON
-      "yaml-language-server",  -- YAML
+      "marksman",  -- Markdown
+      "taplo",     -- TOML
+      "jsonls",    -- JSON
+      "yamlls",    -- YAML
     },
   },
 }
