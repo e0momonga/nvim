@@ -32,7 +32,7 @@ return {
   -- Rust
   rust = {
     lsp = { "rust_analyzer" },
-    formatters = { "rustfmt" },
+    -- formatters = { "rustfmt" },  -- rustup で管理されるため不要
   },
 
   -- Ruby
@@ -66,6 +66,12 @@ return {
   github = {
     linters = { "actionlint" },
   },
+
+  -- Dart/Flutter
+  -- 注意: Flutter Tools プラグインが dartls を管理する場合は不要
+  -- dart = {
+  --   lsp = { "dartls" },
+  -- },
 
   -- 共通ツール（言語非依存）
   common = {

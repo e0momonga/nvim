@@ -24,7 +24,7 @@ return {
   -- LSP との統合
   {
     "williamboman/mason-lspconfig.nvim",
-    event = "BufReadPre",
+    lazy = false,
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local tools = require("data.mason-tools")
@@ -47,7 +47,7 @@ return {
   -- 全ツールの自動インストール
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
-    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
+    event = "VeryLazy",
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local tools = require("data.mason-tools")
