@@ -10,7 +10,7 @@ return {
 
   -- TypeScript/JavaScript
   typescript = {
-    lsp = { "typescript-language-server", "biome", "eslint-lsp" },
+    lsp = { "typescript-language-server", "biome" },
     formatters = { "biome" },
     linters = { "biome" },
   },
@@ -19,6 +19,7 @@ return {
   go = {
     lsp = { "gopls" },
     formatters = { "goimports" },
+    linters = { "golangci-lint" },
   },
 
   -- Python
@@ -42,7 +43,6 @@ return {
   -- Terraform/IaC
   terraform = {
     lsp = { "terraform-ls" },
-    formatters = { "terraform" },
     linters = { "tflint" },
   },
 
@@ -51,8 +51,29 @@ return {
     linters = { "cfn-lint" },
   },
 
+  -- Shell Script
+  shell = {
+    linters = { "shellcheck" },
+    formatters = { "shfmt" },
+  },
+
+  -- Docker
+  docker = {
+    linters = { "hadolint" },
+  },
+
+  -- GitHub Actions
+  github = {
+    linters = { "actionlint" },
+  },
+
   -- 共通ツール（言語非依存）
   common = {
-    -- lsp = { "marksman", "taplo" },
+    lsp = {
+      "marksman",              -- Markdown
+      "taplo",                 -- TOML
+      "jsonls",                -- JSON
+      "yaml-language-server",  -- YAML
+    },
   },
 }

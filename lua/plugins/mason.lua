@@ -6,6 +6,7 @@ return {
   -- Mason 本体
   {
     "williamboman/mason.nvim",
+    cmd = "Mason",
     config = function()
       require("mason").setup({
         ui = {
@@ -23,6 +24,7 @@ return {
   -- LSP との統合
   {
     "williamboman/mason-lspconfig.nvim",
+    event = "BufReadPre",
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local tools = require("data.mason-tools")
@@ -45,6 +47,7 @@ return {
   -- 全ツールの自動インストール
   {
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    cmd = { "MasonToolsInstall", "MasonToolsUpdate", "MasonToolsClean" },
     dependencies = { "williamboman/mason.nvim" },
     config = function()
       local tools = require("data.mason-tools")
@@ -60,8 +63,7 @@ return {
       require("mason-tool-installer").setup({
         ensure_installed = all_tools,
         auto_update = false,
-        run_on_start = true,
-        start_delay = 3000,
+        run_on_start = false,
       })
     end,
   },

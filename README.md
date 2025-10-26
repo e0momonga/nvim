@@ -6,6 +6,7 @@
 
 - [プロジェクト構成](#プロジェクト構成)
 - [プラグイン追加方法](#プラグイン追加方法)
+- [Mason ツール管理](#mason-ツール管理)
 - [主要機能](#主要機能)
 - [セットアップ](#セットアップ)
 
@@ -25,6 +26,9 @@ nvim/
 │   │   └── chadrc.lua           # カスタムカラースキーム管理
 │   │                             # スキームプラグインの自動生成
 │   │
+│   ├── data/                    # データファイル
+│   │   └── mason-tools.lua      # Masonツールリスト（言語別）
+│   │
 │   ├── configs/                 # プラグイン別の設定ファイル
 │   │   ├── lspconfig.lua        # LSP（Language Server Protocol）の設定
 │   │   ├── conform.lua          # コードフォーマッターの設定
@@ -39,6 +43,7 @@ nvim/
 │   │   │                         # - 補完
 │   │   │                         # - コード編集支援（surround等）
 │   │   │
+│   │   ├── mason.lua            # Mason関連プラグイン
 │   │   ├── session/             # セッション管理関連
 │   │   ├── ui/                  # UI拡張
 │   │   │                         # - ステータスラインカスタマイズ
@@ -77,6 +82,7 @@ nvim/
 | `init.lua` | Neovim起動時の処理、lazy.nvimのセットアップ、プラグイン読み込み |
 | `lua/chadrc.lua` | NvChad UIフレームワークの基本設定 |
 | `lua/custom/chadrc.lua` | カスタムカラースキーム定義 |
+| `lua/data/mason-tools.lua` | Masonで管理するツールのリスト |
 | `lua/configs/*.lua` | 各プラグインの詳細設定 |
 | `lua/plugins/*.lua` | プラグインの定義と軽量な設定 |
 | `lua/mappings.lua` | すべてのキーバインド定義 |
@@ -225,6 +231,62 @@ map("n", "<leader>ps", function()
 end, opts)
 ```
 
+## Mason ツール管理
+
+この設定では [mason.nvim](https://github.com/williamboman/mason.nvim) を使用して、LSPサーバー、フォーマッター、リンターを管理しています。
+
+### ツールリストの設定
+
+すべてのツールは `lua/data/mason-tools.lua` で言語ごとに宣言的に管理されています：
+
+```lua
+return {
+  lua = {
+    lsp = { "lua_ls" },
+    formatters = { "stylua" },
+  },
+  typescript = {
+    lsp = { "typescript-language-server", "biome" },
+    formatters = { "biome" },
+    linters = { "biome" },
+  },
+  -- ... 他の言語
+}
+```
+
+### ツールのインストール
+
+ツールは起動時に**自動インストールされません**（起動速度を保つため）。必要に応じて手動でインストールしてください：
+
+```vim
+:MasonToolsInstall    " リストにある不足ツールをインストール
+:MasonToolsUpdate     " すべてのツールを更新
+:MasonToolsClean      " リストにないツールを削除
+```
+
+Mason UIを使用することもできます：
+
+```vim
+:Mason    " 対話的なMasonインターフェースを開く
+```
+
+### 新しいツールの追加
+
+1. `lua/data/mason-tools.lua` を編集
+2. 適切な言語セクションにツールを追加
+3. `:MasonToolsInstall` を実行して新しいツールをインストール
+
+例：
+
+```lua
+-- 新しい言語を追加
+golang = {
+  lsp = { "gopls" },
+  formatters = { "gofumpt" },
+  linters = { "golangci-lint" },
+},
+```
+
 ## 主要機能
 
 ### NvChad フレームワーク
@@ -234,7 +296,7 @@ end, opts)
 
 ### LSP（Language Server Protocol）統合
 - 言語サーバーによるコード補完、定義ジャンプ、リファクタリング
-- Mason経由で言語サーバーを自動インストール
+- Mason経由で言語サーバーを宣言的に管理
 
 ### プラグインマネージャー（lazy.nvim）
 - 遅延ロード対応で起動時間を最小化
@@ -242,7 +304,8 @@ end, opts)
 - 自動更新機能
 
 ### Mason
-- LSP（言語サーバー）、DAP（デバッガー）、Linterの一元管理
+- LSP（言語サーバー）、DAP（デバッガー）、Linter、Formatterの一元管理
+- 設定ファイルで宣言的に管理（`lua/data/mason-tools.lua`）
 - `:Mason`コマンドで対話的にインストール・管理
 
 ## セットアップ
@@ -269,18 +332,23 @@ nvim
 
 Lazy.nvimが自動的にプラグインをインストールします。初回起動時は少し時間がかかります。
 
-### LSPセットアップ
+### LSP・ツールのセットアップ
 
-言語サーバーをインストール：
+必要な開発ツールをインストール：
+
+```vim
+:MasonToolsInstall
+```
+
+または、Mason UIから個別にインストール：
 
 ```vim
 :Mason
 ```
-
-Mason UI から必要な言語サーバーを選択してインストールしてください。
 
 ---
 
 **参考**
 - [NvChad ドキュメント](https://nvchad.com/)
 - [lazy.nvim ドキュメント](https://github.com/folke/lazy.nvim)
+- [mason.nvim ドキュメント](https://github.com/williamboman/mason.nvim)
