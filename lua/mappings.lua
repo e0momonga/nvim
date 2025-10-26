@@ -7,6 +7,7 @@ map("n", "<leader>Q", "<Cmd>qa<CR>", { desc = "Quit Nvchad" })
 
 -- Save commands
 map("n", "<leader>ww", "<Cmd>w<CR>", { desc = "Save file" })
+map("n", "<leader>wq", "<Cmd>wq<CR>", { desc = "Save and Quit" })
 
 -- Window splits
 map("n", "|", "<Cmd>vsplit<CR>", { desc = "Vertical Split" })
