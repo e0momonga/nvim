@@ -12,8 +12,8 @@ return {
     vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>", { buffer = true })
     vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>", { buffer = true })
 
-    -- Cycle list types with <leader>cn and <leader>cp
-    vim.keymap.set("n", "<leader>cn", require("autolist").cycle_next_dr, { expr = true, buffer = true })
-    vim.keymap.set("n", "<leader>cp", require("autolist").cycle_prev_dr, { expr = true, buffer = true })
+    -- Cycle list types with <leader>mn and <leader>mP
+    vim.keymap.set("n", "<leader>mn", require("autolist").cycle_next_dr, { expr = true, buffer = true })
+    vim.keymap.set("n", "<leader>mP", require("autolist").cycle_prev_dr, { expr = true, buffer = true })
   end,
 }
