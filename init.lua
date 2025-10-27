@@ -25,7 +25,6 @@ local lazy_plugins = {
     end,
   },
 
-  { import = "plugins" },
   { import = "plugins.lsp" },
   { import = "plugins.debug" },
   { import = "plugins.test" },
