@@ -26,11 +26,20 @@ local lazy_plugins = {
   },
 
   { import = "plugins" },
+  { import = "plugins.lsp" },
+  { import = "plugins.debug" },
+  { import = "plugins.test" },
+  { import = "plugins.lang" },
+  { import = "plugins.syntax" },
+  { import = "plugins.editing" },
+  { import = "plugins.navigation" },
+  { import = "plugins.dev-tools" },
   { import = "plugins.session" },
   { import = "plugins.ui" },
   { import = "plugins.finder" },
   { import = "plugins.git" },
   { import = "plugins.markdown" },
+  { import = "plugins.ai" },
 }
 
 -- Load custom plugins from custom.chadrc
