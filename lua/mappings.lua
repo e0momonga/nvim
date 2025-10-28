@@ -41,8 +41,8 @@ vim.keymap.set('n', '<leader>dd', '"_dd', { noremap = true, desc = "Line delete 
 
 
 -- Movement enhancements
-map("n", "<S-l>", "$")
-map("n", "<S-h>", "^")
+map("n", "L", "$", { desc = "Jump to end of line" })
+map("n", "H", "^", { desc = "Jump to beginning of line" })
 map("n", "J", "}", { desc = "Jump to previous paragraph" })
 map("n", "K", "{", { desc = "Jump to next paragraph" })
 
