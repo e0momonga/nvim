@@ -13,7 +13,7 @@ local custom_mapping = {
     if cmp.visible() then
       -- 手動で選択された項目のみ確定、自動選択は無効
       if cmp.get_active_entry() then
-        cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+        cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false })
       else
         fallback()
       end
