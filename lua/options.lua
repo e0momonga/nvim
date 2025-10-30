@@ -7,6 +7,10 @@ require "nvchad.options"
 
 local o = vim.o
 
+-- clipboard settings
+-- OSC52 plugin handles clipboard operations for SSH/remote sessions
+o.clipboard = "unnamedplus" -- Use system clipboard for all yank/paste operations
+
 -- general settings
 o.expandtab = true   -- Use spaces instead of tabs
 o.tabstop = 2        -- Number of spaces tabs count for
