@@ -110,6 +110,38 @@ M.find_files_exact = function()
   }
 end
 
+-- gitignoreを尊重し、隠しファイルも除外するgrep検索
+M.live_grep_respect_gitignore = function()
+  require("telescope").extensions.live_grep_args.live_grep_args {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      -- -uuフラグなし = .gitignoreを尊重、隠しファイルも除外
+    },
+  }
+end
+
+-- gitignoreを無視し、隠しファイルも含むgrep検索
+M.live_grep_no_ignore = function()
+  require("telescope").extensions.live_grep_args.live_grep_args {
+    vimgrep_arguments = {
+      "rg",
+      "--color=never",
+      "--no-heading",
+      "--with-filename",
+      "--line-number",
+      "--column",
+      "--smart-case",
+      "-uu", -- .gitignoreと隠しファイルを無視
+    },
+  }
+end
+
 -- Export utilities for use in mappings
 _G.telescope_utils = M
 

@@ -166,12 +166,10 @@ map("n", "<leader>mr", "<Cmd>RenderMarkdown toggle<CR>", { desc = "Toggle markdo
 -- Telescope shortcuts (quick access)
 map("n", "fb", "<Cmd>Telescope buffers<CR>", { desc = "Find buffers" })
 map("n", "ff", "<Cmd>Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
-map("n", "FF", "<Cmd>lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
-map("n", "fw", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
+map("n", "fw", "<Cmd>lua _G.telescope_utils.live_grep_respect_gitignore()<CR>", { desc = "Find words (respect gitignore)" })
 map("n", "<leader>fb", "<Cmd>Telescope buffers<CR>", { desc = "Find buffers" })
-map("n", "<leader>ff", "<Cmd>Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
-map("n", "<leader>FF", "<Cmd>lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact)" })
-map("n", "<leader>fw", "<Cmd>lua require('telescope').extensions.live_grep_args.live_grep_args()<CR>", { desc = "Find words" })
+map("n", "<leader>ff", "<Cmd>lua _G.telescope_utils.find_files_exact()<CR>", { desc = "Find files (exact, with hidden)" })
+map("n", "<leader>fw", "<Cmd>lua _G.telescope_utils.live_grep_no_ignore()<CR>", { desc = "Find words (no ignore, with hidden)" })
 
 -- Disable default leader+n mapping and add custom line number toggle
 vim.keymap.del("n", "<leader>n", { silent = true })
