@@ -38,3 +38,10 @@ autocmd("TextYankPost", {
     vim.highlight.on_yank { highlight = "IncSearch", timeout = 100 }
   end,
 })
+
+-- notify on save
+autocmd("BufWritePost", {
+  callback = function()
+    vim.notify("Saved", vim.log.levels.INFO, { timeout = 500 })
+  end,
+})
