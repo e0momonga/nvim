@@ -47,12 +47,35 @@ map("n", "J", "}", { desc = "Jump to previous paragraph" })
 map("n", "K", "{", { desc = "Jump to next paragraph" })
 
 
--- lazy plugin manager
-map("n", "<leader>pi", function() require("lazy").install() end, { desc = "Install Plugin" })
+-- Visual mode enhancements
+-- Search selected text with telescope
+map('v', '<leader>fw', function()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  require('telescope.builtin').live_grep({ default_text = text })
+end, { desc = "Find selected text" })
 
+-- Replace in selection range
+map('v', '<leader>r', function()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  text = vim.fn.escape(text, '/\\')
+  local keys = vim.api.nvim_replace_termcodes(':%s/' .. text .. '//g<Left><Left>', true, false, true)
+  vim.api.nvim_feedkeys(keys, 'n', false)
+end, { desc = "Replace selected text in range" })
 
--- mason installer
-map("n", "<leader>pm", "<cmd>Mason<CR>", { desc = "Open Mason Installer" })
+-- Indent and keep selection
+map('v', '<', '<gv', { desc = "Indent left and reselect" })
+map('v', '>', '>gv', { desc = "Indent right and reselect" })
+
+-- Search selected text with /
+map('v', '/', function()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  text = vim.fn.escape(text, '/\\')
+  vim.fn.feedkeys('/' .. text .. '\n', 'n')
+end, { desc = "Search selected text" })
+
 
 -- lazygit
 map("n", "<leader>lg", "<cmd>LazyGit<CR>", { desc = "LazyGit" })
