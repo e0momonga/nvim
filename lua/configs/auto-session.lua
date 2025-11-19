@@ -1,28 +1,47 @@
+-- セッションに保存する項目を設定
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 local opts = {
   log_level = vim.log.levels.ERROR,
-  auto_session_suppress_dirs = { "~/", "~/Projects", "~/Downloads", "/" },
-  -- auto_session_use_git_branch = true,
 
-  auto_session_enable_last_session = vim.loop.cwd() == vim.loop.os_homedir(),
-  bypass_session_save_file_types = nil, -- table: Bypass auto save when only buffer open is one of these file types
-  cwd_change_handling = { -- table: Config for handling the DirChangePre and DirChanged autocmds, can be set to nil to disable altogether
-    restore_upcoming_session = true, -- boolean: restore session for upcoming cwd on cwd change
-    post_cwd_changed_hook = function()
-      local nvim_tree = require "nvim-tree"
-      nvim_tree.change_dir(vim.fn.getcwd())
-      nvim_tree.refresh()
-    end, -- function: This is called after auto_session code runs for the `DirChangedPre` autocmd
-    pre_cwd_changed_hook = nil, -- function: This is called after auto_session code runs for the `DirChanged` autocmd
+  -- 自動保存・復元・作成を明示的に有効化
+  auto_save = true,
+  auto_restore = true,
+  auto_create = true,
+
+  -- エラーがあっても復元を続行
+  continue_restore_on_error = true,
+
+  -- セッションを作成しないディレクトリ（macOSのデフォルトディレクトリ）
+  suppressed_dirs = {
+    "~/",
+    "~/Downloads",
+    "~/Documents",
+    "~/Desktop",
+    "~/Pictures",
+    "~/Music",
+    "~/Movies",
+    "/",
   },
 
-  -- ⚠️ This will only work if Telescope.nvim is installed
-  -- The following are already the default values, no need to provide them if these are already the settings you want.
+  -- ディレクトリ変更時の処理
+  cwd_change_handling = {
+    restore_upcoming_session = true,
+    post_cwd_changed_hook = function()
+      local ok, nvim_tree = pcall(require, "nvim-tree")
+      if ok then
+        nvim_tree.change_dir(vim.fn.getcwd())
+        nvim_tree.refresh()
+      end
+    end,
+  },
+
+  -- Telescope統合
   session_lens = {
-    -- If load_on_setup is set to false, one needs to eventually call `require("auto-session").setup_session_lens()` if they want to use session-lens.
-    buftypes_to_ignore = {}, -- list of buffer types what should not be deleted from current session
     load_on_setup = true,
     theme_conf = { border = true },
     previewer = false,
   },
 }
+
 require("auto-session").setup(opts)
