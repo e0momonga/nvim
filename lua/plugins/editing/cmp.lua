@@ -9,7 +9,7 @@ return {
         end
         fallback() -- 改行
       end),
-      ["<C-CR>"] = cmp.mapping.confirm { select = true }, -- Ctrl+Enterで確定
+      ["<C-y>"] = cmp.mapping.confirm { select = true }, -- 確定
       ["<Tab>"] = cmp.mapping.select_next_item(), -- 次の候補
       ["<S-Tab>"] = cmp.mapping.select_prev_item(), -- 前の候補
     })
