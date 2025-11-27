@@ -19,6 +19,10 @@ M.base46 = {
 }
 
 M.ui = {
+  statusline = {
+    enabled = false, -- Disable NvChad statusline to use lualine
+  },
+
   -- lazyload it when there are 1+ buffers
   tabufline = {
     enabled = true,
