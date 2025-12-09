@@ -1,6 +1,6 @@
 return {
   'ojroques/nvim-osc52',
-  event = 'VeryLazy',
+  lazy = false, -- 起動時に読み込んで xclip より先に設定を適用させる
   config = function()
     require('osc52').setup {
       max_length = 0,           -- No limit on selection size
