@@ -6,19 +6,48 @@
 -- 新しい LSP を追加する場合は lua/data/mason-tools.lua を編集してください。
 --
 
+-- NvChadのデフォルト設定を取得
+local on_attach = function(client, bufnr)
+  -- NvChadのデフォルトon_attachを呼び出し
+  require("nvchad.configs.lspconfig").on_attach(client, bufnr)
+
+  -- nvim-navicをアタッチ（documentSymbolProviderをサポートしている場合のみ）
+  if client.server_capabilities.documentSymbolProvider then
+    require("nvim-navic").attach(client, bufnr)
+  end
+end
+
+local on_init = require("nvchad.configs.lspconfig").on_init
+local capabilities = require("nvchad.configs.lspconfig").capabilities
+
+local lspconfig = require "lspconfig"
+
 -- mason-lspconfig に完全に任せるため、空リストに設定
 local servers = {}
 
-for _, lsp in ipairs(servers) do
-  vim.lsp.enable(lsp)
-end
-
--- ruby-lsp: Bundler を無効化して Mason のものを使用
--- NvChad の defaults() の後に実行されるため、ここで設定すれば確実に反映される
-vim.lsp.config("ruby_lsp", {
-  cmd = {
-    "env",
-    "BUNDLE_GEMFILE=",
-    vim.fn.stdpath("data") .. "/mason/bin/ruby-lsp",
+require("mason-lspconfig").setup {
+  ensure_installed = vim.tbl_keys(servers),
+  handlers = {
+    -- ruby_lsp専用ハンドラー（カスタムcmdを設定）
+    ["ruby_lsp"] = function()
+      lspconfig.ruby_lsp.setup {
+        on_init = on_init,
+        on_attach = on_attach,
+        capabilities = capabilities,
+        cmd = {
+          "env",
+          "BUNDLE_GEMFILE=",
+          vim.fn.stdpath("data") .. "/mason/bin/ruby-lsp",
+        },
+      }
+    end,
+    -- その他すべてのサーバー用デフォルトハンドラー
+    function(server_name)
+      lspconfig[server_name].setup {
+        on_init = on_init,
+        on_attach = on_attach,
+        capabilities = capabilities,
+      }
+    end,
   },
-})
+}
