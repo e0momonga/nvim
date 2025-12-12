@@ -168,10 +168,12 @@ map("n", "<leader>l", "<Cmd>lua require'dap'.set_breakpoint(nil, nil, vim.fn.inp
 -- dap-ui key maps
 map("n", "<leader>d", "<Cmd>lua require'dapui'.toggle()<CR>", { silent = true, desc = "Toggle dap-ui" })
 
--- Copilot
-map("n", "<leader>cd", "<Cmd>Copilot disable<CR>", { desc = "Disable Copilot" })
-map("n", "<leader>ce", "<Cmd>Copilot enable<CR>", { desc = "Enable Copilot" })
-map("i", "<C-k>", 'copilot#Accept("<CR>")', { silent = true, expr = true, script = true, replace_keycodes = false })
+-- Copilot (zbirenbaum/copilot.lua)
+map("n", "<leader>cd", function()
+  require("copilot.suggestion").toggle_auto_trigger()
+end, { desc = "Toggle Copilot auto-trigger" })
+map("n", "<leader>cp", "<Cmd>Copilot panel<CR>", { desc = "Open Copilot panel" })
+-- <C-k>での補完受け入れはcopilot.luaのsetupで設定済み
 
 -- ZenMode
 map("n", "<leader>zz", "<Cmd>ZenMode<CR>", { desc = "ZenMode" })
