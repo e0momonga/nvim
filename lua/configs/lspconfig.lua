@@ -28,20 +28,6 @@ local servers = {}
 require("mason-lspconfig").setup {
   ensure_installed = vim.tbl_keys(servers),
   handlers = {
-    -- ruby_lsp専用ハンドラー（カスタムcmdを設定）
-    ["ruby_lsp"] = function()
-      lspconfig.ruby_lsp.setup {
-        on_init = on_init,
-        on_attach = on_attach,
-        capabilities = capabilities,
-        cmd = {
-          "env",
-          "BUNDLE_GEMFILE=",
-          vim.fn.stdpath("data") .. "/mason/bin/ruby-lsp",
-        },
-      }
-    end,
-    -- その他すべてのサーバー用デフォルトハンドラー
     function(server_name)
       lspconfig[server_name].setup {
         on_init = on_init,
