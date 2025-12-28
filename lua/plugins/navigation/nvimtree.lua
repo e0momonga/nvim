@@ -6,6 +6,11 @@ return {
         enable = true,
         ignore = false, -- Show gitignored files
       },
+      update_focused_file = {
+        enable = true, -- Auto-focus on current file
+        update_root = false, -- Don't change root directory
+        ignore_list = {}, -- Focus on all buffer types
+      },
       renderer = {
         hidden_display = "all", -- Show hidden files
         icons = {
