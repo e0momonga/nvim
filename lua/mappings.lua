@@ -188,6 +188,12 @@ map("n", "<leader>cp", "<Cmd>CopyFilePath<CR>", { desc = "Copy file path", silen
 map("n", "<leader>mp", "<Cmd>MarkdownPreviewToggle<CR>", { desc = "Toggle markdown preview", silent = true })
 map("n", "<leader>mr", "<Cmd>RenderMarkdown toggle<CR>", { desc = "Toggle markdown render", silent = true })
 
+-- Marp.nvim
+map("n", "<leader>mw", "<Cmd>MarpWatch<CR>", { desc = "Marp: Start watch mode", silent = true })
+map("n", "<leader>ms", "<Cmd>MarpStop<CR>", { desc = "Marp: Stop watch mode", silent = true })
+map("n", "<leader>me", "<Cmd>MarpExport<CR>", { desc = "Marp: Export", silent = true })
+map("n", "<leader>mT", "<Cmd>MarpTheme<CR>", { desc = "Marp: Change theme", silent = true })
+
 -- Telescope shortcuts (quick access)
 map("n", "fb", "<Cmd>Telescope buffers<CR>", { desc = "Find buffers" })
 map("n", "ff", "<Cmd>Telescope find_files<CR>", { desc = "Find files (fuzzy)" })
