@@ -41,10 +41,10 @@ vim.keymap.set('n', '<leader>dd', '"_dd', { noremap = true, desc = "Line delete 
 
 
 -- Movement enhancements
-map("n", "L", "$", { desc = "Jump to end of line" })
-map("n", "H", "^", { desc = "Jump to beginning of line" })
-map("n", "J", "}", { desc = "Jump to previous paragraph" })
-map("n", "K", "{", { desc = "Jump to next paragraph" })
+map({"n", "v"}, "L", "$", { desc = "Jump to end of line" })
+map({"n", "v"}, "H", "^", { desc = "Jump to beginning of line" })
+map({"n", "v"}, "J", "}", { desc = "Jump to previous paragraph" })
+map({"n", "v"}, "K", "{", { desc = "Jump to next paragraph" })
 
 
 -- Visual mode enhancements
