@@ -39,6 +39,9 @@ vim.keymap.set('v', '<leader>d', '"_d', { noremap = true, desc = "Visual delete 
 -- 行全体を黒穴レジスタで削除
 vim.keymap.set('n', '<leader>dd', '"_dd', { noremap = true, desc = "Line delete without yanking" })
 
+-- xキーでyankせずに削除
+map({'n', 'v'}, 'x', '"_x', { desc = "Delete without yanking" })
+
 
 -- Movement enhancements
 map({"n", "v"}, "L", "$", { desc = "Jump to end of line" })
