@@ -18,23 +18,26 @@ return {
       return {vim.fn.split(vim.fn.getreg(''), '\n'), vim.fn.getregtype('')}
     end
 
-    vim.g.clipboard = {
-      name = 'osc52',
-      copy = {['+'] = copy, ['*'] = copy},
-      paste = {['+'] = paste, ['*'] = paste},
-    }
+    -- SSH接続時のみvim.g.clipboardを設定
+    -- ローカル環境ではmacOS標準のクリップボード連携を使用
+    if vim.env.SSH_TTY or vim.env.SSH_CONNECTION then
+      vim.g.clipboard = {
+        name = 'osc52',
+        copy = {['+'] = copy, ['*'] = copy},
+        paste = {['+'] = paste, ['*'] = paste},
+      }
+    end
 
-    -- Optional: Add keymappings for explicit OSC52 copy
     vim.keymap.set('n', '<leader>y', require('osc52').copy_operator, {
       expr = true,
-      desc = 'Copy to clipboard (OSC52)'
+      desc = 'Copy to clipboard'
     })
     vim.keymap.set('n', '<leader>yy', '<leader>y_', {
       remap = true,
-      desc = 'Copy line to clipboard (OSC52)'
+      desc = 'Copy line to clipboard'
     })
     vim.keymap.set('v', '<leader>y', require('osc52').copy_visual, {
-      desc = 'Copy selection to clipboard (OSC52)'
+      desc = 'Copy selection to clipboard'
     })
   end,
 }
