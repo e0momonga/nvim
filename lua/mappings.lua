@@ -211,3 +211,22 @@ map("n", "<leader>NN", function()
   vim.wo.number = not vim.wo.number
 end, { desc = "Toggle line numbers" })
 
+-- smart-splits.nvim: ウィンドウ循環移動 + tmux連携
+-- NvChadのデフォルト（<C-w>h など）を上書き
+-- 端に到達したら反対側に循環移動する
+-- tmuxペインとNeovimウィンドウ間もシームレスに移動可能
+map("n", "<C-h>", function()
+  require("smart-splits").move_cursor_left()
+end, { desc = "Move to left split (wrap)" })
+
+map("n", "<C-j>", function()
+  require("smart-splits").move_cursor_down()
+end, { desc = "Move to down split (wrap)" })
+
+map("n", "<C-k>", function()
+  require("smart-splits").move_cursor_up()
+end, { desc = "Move to up split (wrap)" })
+
+map("n", "<C-l>", function()
+  require("smart-splits").move_cursor_right()
+end, { desc = "Move to right split (wrap)" })
