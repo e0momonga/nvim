@@ -23,7 +23,7 @@ return {
         suggestion = {
           enabled = true,
           auto_trigger = true,
-          debounce = 75,
+          debounce = 300, -- performance tuning
           keymap = {
             accept = "<M-k>",
             accept_word = false,

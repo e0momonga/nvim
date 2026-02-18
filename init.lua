@@ -69,7 +69,6 @@ vim.schedule(function()
 end)
 
 -- Apply custom colorscheme (overrides base46)
-local custom_chadrc = require "custom.chadrc"
 local active_scheme = custom_chadrc.schemes[custom_chadrc.colorscheme]
 if active_scheme and active_scheme.setup then
   active_scheme.setup()
