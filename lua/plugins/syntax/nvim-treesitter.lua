@@ -19,7 +19,9 @@ return {
       "dart",
       "graphql",
       "markdown",
-      "markdown_inline"
+      "markdown_inline",
+      "yaml",
+      "toml",
     },
   }
 }
