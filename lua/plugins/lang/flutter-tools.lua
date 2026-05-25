@@ -34,11 +34,6 @@ return {
           prefix = "// ",
         },
         lsp = {
-          color = {
-            enabled = true,
-            background = true,
-            virtual_text = false,
-          },
           settings = {
             showTodos = true,
             completeFunctionCalls = true,
